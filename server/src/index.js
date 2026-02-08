@@ -5,6 +5,7 @@ import fileRoutes from "./routes/file.routes.js"
 import userRoutes from "./routes/user.routes.js"
 import path from 'path';
 const __dirname = path.resolve();
+const rootDir = path.join(__dirname, '..');  // Go up one level from server to project root
 
 import express from "express"
 import cors from "cors"
@@ -25,7 +26,7 @@ const startServer = async () => {
     app.use("/api/users", userRoutes); // 👈 Now you can use /api/users endpoints
 
     // Serve static files from React build (dist folder)
-    app.use(express.static(path.join(__dirname, 'client', 'dist')));
+    app.use(express.static(path.join(rootDir, 'client', 'dist')));
 
     // API route for short code file lookup
     app.get('/f/:shortCode', async (req, res) => {
@@ -50,7 +51,7 @@ const startServer = async () => {
 
     // Catch-all route: serve index.html for all non-API routes (for React Router)
     app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+      res.sendFile(path.join(rootDir, 'client', 'dist', 'index.html'));
     });
 
     app.listen(PORT, () => {
