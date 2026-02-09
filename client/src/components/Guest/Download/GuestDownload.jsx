@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { API_BASE_URL } from "../../config/apiConfig";
+import { API_BASE_URL } from "../../../config/apiConfig.js";
 
 const GuestDownload = () => {
   const { shortCode } = useParams();
