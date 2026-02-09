@@ -37,7 +37,8 @@ const startServer = async () => {
       console.log("Short code:", shortCode);
       // Handle the download logic here
       try {
-        const file = await File.findOne({ shortUrl: `${process.env.BASE_URL}/f/${shortCode}` });
+        // Fix: Database stores shortUrl as `/f/${shortCode}`, not full URL
+        const file = await File.findOne({ shortUrl: `/f/${shortCode}` });
         if (!file) {
           return res.status(404).send('File not found');
         }
