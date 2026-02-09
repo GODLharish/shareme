@@ -5,7 +5,7 @@ import fileRoutes from "./routes/file.routes.js"
 import userRoutes from "./routes/user.routes.js"
 import path from 'path';
 const __dirname = path.resolve();
-const rootDir = path.join(__dirname, '..');  // Go up one level from server to project root
+const rootDir = path.join(__dirname, '..');
 
 import express from "express"
 import cors from "cors"
@@ -14,7 +14,7 @@ import { File } from "./models/file.models.js";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 5600;
+const PORT = process.env.PORT || 6600;
 
 
 const startServer = async () => {
