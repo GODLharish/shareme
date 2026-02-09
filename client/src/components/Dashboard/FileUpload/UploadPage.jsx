@@ -63,7 +63,14 @@ const FileUploader = () => {
 
     const formData = new FormData();
     files.forEach((file) => formData.append("files", file));
-    formData.append("userId", user._id ? user._id : user.id);
+
+    // Get userId from user object (backend returns "id" not "_id")
+    const userId = user?.id || user?._id;
+    if (!userId) {
+      toast.error("User not found. Please log in again.");
+      return;
+    }
+    formData.append("userId", userId);
     formData.append("hasExpiry", enableExpiry);
 
     if (enableExpiry && expiryDate) {
